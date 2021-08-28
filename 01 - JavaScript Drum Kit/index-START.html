@@ -59,6 +59,29 @@
 
 <script>
 
+  //first need to listen for key press
+  //if key press value matches one of the data-keys, than we add
+  //  the styling and sound to that element temporarily
+
+//listening for key press on entire document
+  document.addEventListener('keypress', handleKeyPress);
+
+  const drumKeys = document.querySelectorAll(".key");
+  const drumSounds = document.querySelectorAll("audio");
+
+  function handleKeyPress(e) {
+    for (let i =0; i < drumKeys.length; i++) {
+      if (drumKeys[i].getAttribute("data-key") == e.keyCode) {
+        drumKeys[i].classList.add("playing");
+        setTimeout(function(){
+          drumKeys[i].classList.remove("playing");
+        }, 100);
+
+        drumSounds[i].play();
+      }
+
+    }
+  }
 </script>
 
 
