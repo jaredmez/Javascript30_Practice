@@ -75,8 +75,8 @@
         drumKeys[i].classList.add("playing");
         setTimeout(function(){
           drumKeys[i].classList.remove("playing");
-        }, 100);
-
+        }, 200);
+        drumSounds[i].currentTime = 0;
         drumSounds[i].play();
       }
 
