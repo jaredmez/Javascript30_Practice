@@ -40,7 +40,7 @@
       width: 30rem;
       height: 30rem;
       border: 20px solid white;
-      /* border-radius: 50%; */
+      border-radius: 50%;
       margin: 50px auto;
       position: relative;
       padding: 2rem;
@@ -66,51 +66,28 @@
       position: absolute;
       top: 50%;
       transform-origin: right;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
-    .hour-hand {
-      transform: rotate(45deg);
-
-    }
-
-    .min-hand {
-      
-    }
-
-    .second-hand {
-      
-    }
   </style>
 
   <script>
-    let secHand = document.querySelector(".second-hand");
-    let minHand = document.querySelector(".min-hand");
+    const secHand = document.querySelector(".second-hand");
+    const minHand = document.querySelector(".min-hand");
     const hrHand = document.querySelector(".hour-hand");
     
-      function showTime() {
-        
-        let currentTime = new Date();
-        let secs = currentTime.getSeconds();
-        const mins = currentTime.getMinutes();
-        let currentDeg = getDeg(secs);
-        let minDeg = getMinDeg(mins);
-        const hr = currentTime.getHours();
-        let currentHrDeg = getHrDeg(hr);
+    function showTime() {
+      
+      const currentTime = new Date();
+      const secs = (currentTime.getSeconds() * 6) + 90;
+      const mins = (currentTime.getMinutes() * 6) + 90;
+      const hr = (currentTime.getHours() * 30) + 90;
 
-        secHand.style.cssText  += `transform:rotate(${currentDeg}deg`;
-        minHand.style.cssText += `transform:rotate(${minDeg}deg`;
-        hrHand.style.cssText += `transform:rotate(${currentHrDeg}deg`;
-      }
-
-      function getDeg(sec) {
-        return 90+(sec*6);
-      }
-      function getMinDeg(min) {
-        return 90+(min*6);
-      }
-      function getHrDeg(hr) {
-        return 90+(hr*30);
-      }
+      secHand.style.cssText  += `transform:rotate(${secs}deg`;
+      minHand.style.cssText += `transform:rotate(${mins}deg`;
+      hrHand.style.cssText += `transform:rotate(${hr}deg`;
+    }
 
     setInterval(showTime, 1000);
     showTime();
