@@ -44,23 +44,34 @@
     }
 
     img {
-      background-color: yellow;
+      background-color: #ffc600;
       padding: 10px;
+      filter: blur(10px);
     }
   </style>
 
   <script>
 
-    let spacingEl = document.querySelector("#spacing");
-    //console.log(spacingEl);
-    spacingEl.addEventListener("change", rangeHandler);
-    function rangeHandler(e) {
-      const imgPadding = document.querySelector('img')
-      imgPadding.style.padding = `${e.target.value}px`;
-      console.log(e.target.value);
-    }
+    const spacingEl = document.querySelector("#spacing");
+    spacingEl.addEventListener("change", spacingHandler);
     
+    const baseEl =  document.querySelector("#base");
+    baseEl.addEventListener("change", baseHandler)
 
+    const blurEl =  document.querySelector("#blur");
+    blurEl.addEventListener("change", blurHandler)
+
+    function spacingHandler(e) {
+      document.querySelector('img').style.padding = `${e.target.value}px`
+    }
+
+    function baseHandler(e) {
+      document.querySelector("img").style.backgroundColor = `${e.target.value}`;
+    }
+
+    function blurHandler(e) {
+      document.querySelector("img").style.filter = `blur(${e.target.value}px)`;
+    }
   
   </script>
 
