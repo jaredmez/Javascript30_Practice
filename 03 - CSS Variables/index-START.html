@@ -45,7 +45,7 @@
 
     img {
       background-color: #ffc600;
-      padding: 10px;
+      padding: var(--spacing);
       filter: blur(10px);
     }
   </style>
@@ -53,16 +53,17 @@
   <script>
 
     const spacingEl = document.querySelector("#spacing");
-    spacingEl.addEventListener("change", spacingHandler);
+    spacingEl.addEventListener("mousemove", spacingHandler);
     
     const baseEl =  document.querySelector("#base");
     baseEl.addEventListener("change", baseHandler)
 
     const blurEl =  document.querySelector("#blur");
-    blurEl.addEventListener("change", blurHandler)
+    blurEl.addEventListener("mousemove", blurHandler)
+    console.log(spacingEl.dataset);
 
     function spacingHandler(e) {
-      document.querySelector('img').style.padding = `${e.target.value}px`
+    document.querySelector('img').style.setProperty(`--${this.name}`, `${e.target.value}px`)
     }
 
     function baseHandler(e) {
