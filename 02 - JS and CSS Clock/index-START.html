@@ -87,12 +87,6 @@
     let minHand = document.querySelector(".min-hand");
     const hrHand = document.querySelector(".hour-hand");
     
-    console.log(secHand)
-
-
-    function clock() {
-      setInterval(showTime, 1000);
-
       function showTime() {
         
         let currentTime = new Date();
@@ -106,24 +100,20 @@
         secHand.style.cssText  += `transform:rotate(${currentDeg}deg`;
         minHand.style.cssText += `transform:rotate(${minDeg}deg`;
         hrHand.style.cssText += `transform:rotate(${currentHrDeg}deg`;
-        console.log(mins, secs);
       }
 
       function getDeg(sec) {
-        let deg = 90+(sec*6);
-        return deg;
+        return 90+(sec*6);
       }
-
       function getMinDeg(min) {
-        let deg = 90+(min*6)
-        return deg;
+        return 90+(min*6);
       }
-
       function getHrDeg(hr) {
         return 90+(hr*30);
       }
-    }
-    clock();
+
+    setInterval(showTime, 1000);
+    showTime();
 
   </script>
 </body>
