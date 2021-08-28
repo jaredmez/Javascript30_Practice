@@ -42,9 +42,26 @@
     input {
       width: 100px;
     }
+
+    img {
+      background-color: yellow;
+      padding: 10px;
+    }
   </style>
 
   <script>
+
+    let spacingEl = document.querySelector("#spacing");
+    //console.log(spacingEl);
+    spacingEl.addEventListener("change", rangeHandler);
+    function rangeHandler(e) {
+      const imgPadding = document.querySelector('img')
+      imgPadding.style.padding = `${e.target.value}px`;
+      console.log(e.target.value);
+    }
+    
+
+  
   </script>
 
 </body>
