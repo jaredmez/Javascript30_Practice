@@ -82,19 +82,57 @@
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+              let initialValue =0
+              const totalYears = inventors.reduce(calcTtlYears, initialValue );
 
+              function calcTtlYears(acum, curVal) {
+                return acum + (curVal.passed - curVal.year);
+              }
+
+              console.log(totalYears);
     // 5. Sort the inventors by years lived
+
+              function sorter(invtOne, invtTwo) {
+                let a = invtOne.passed - invtOne.year;
+                let b = invtTwo.passed - invtTwo.year;
+                return a < b ? 1 : -1;
+                
+              }
+              const yearSort = inventors.sort(sorter);
+              console.table(yearSort);
+         
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+              // const wikiContent = Array.from(document.querySelectorAll(".mw-category-group ul li"));
+              // const deStreets = wikiContent.filter(street => street.innerText.includes('de'));
+              // const finalList = destreets.map(street => street.innerText)
+              // console.log(wikiContent);
+
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+              const pplSort = people.sort();
+              console.log(pplSort);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+              let instances = {};
+              //map through data and add unique instanst to instances object
+              data.map(countInsts);
+
+              //reduce through data for each instance in the object
+
+              function countInsts(elem) {
+                if (!instances.hasOwnProperty(elem)) {
+                  instances[elem] =1;
+                }
+                else instances[elem] = instances[elem] +1;
+              }
+
+              console.log(instances);
 
   </script>
 </body>
