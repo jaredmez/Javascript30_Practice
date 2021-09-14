@@ -13,7 +13,109 @@
   html, body {
     margin: 0;
   }
+
+  #draw {
+    border: 1px solid gray;
+  }
 </style>
 
 </body>
+<script>
+const canvas = document.querySelector("#draw");
+let ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+ctx.strokeStyle = '#BADA55';
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+
+ctx.lineWidth = 1;
+
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+let widthDirection = true;
+
+
+function draw(e) {
+  if (!isDrawing) return;
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  lastX = e.offsetX;
+  lastY = e.offsetY;
+
+  hue++;
+  if (ctx.lineWidth >= 100) {
+    widthDirection = !widthDirection;
+  }
+  if (ctx.lineWidth <= 1) {
+    widthDirection = !widthDirection;
+  }
+
+  if (widthDirection == true) {
+    ctx.lineWidth++;
+  }
+  else if (widthDirection == false) {
+    ctx.lineWidth--;
+  }
+}
+
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', (e) => {
+  lastX = e.offsetX;
+  lastY = e.offsetY;
+  isDrawing = true
+});
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('mouseout', () => isDrawing = false);
+
+
+// canvas.addEventListener('mousedown', mouseHandler);
+// function mouseHandler(e) {
+
+//   console.log(e);
+// }
+
+// canvas.addEventListener('mousemove', moveHandler);
+// function moveHandler(e) {
+//   drawIt(e.layerX, e.layerY);
+// }
+
+// let lineThickness =  1;
+
+// function drawIt(xCord, yCord) {
+//   if (lineThickness == 10) {
+//     console.log('why')
+//     lineThickness = lineThickness - .1;
+//   }
+//   else {
+//     lineThickness = lineThickness + .1;
+//   }
+//   console.log(lineThickness);
+//   ctx.lineWidth= lineThickness;
+//   ctx.beginPath();
+//   ctx.lineTo(xCord, yCord);
+//   ctx.closePath();
+//   ctx.stroke();
+// }
+
+// // ctx.beginPath();
+//   // ctx.moveTo(550,550);
+//   ctx.lineTo(330,330);
+//   ctx.lineTo(130,330);
+//   // ctx.closePath()
+//   ctx.stroke();
+  
+//   // ctx.moveTo(550,550);
+//    ctx.lineTo(330,430);
+//   // ctx.lineTo(130,330);
+//   // ctx.closePath()
+//   ctx.stroke();
+
+
+</script>
 </html>
