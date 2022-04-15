@@ -96,6 +96,31 @@
   </div>
 
 <script>
+  let lastchecked;
+  let inbetween = false;
+  let count = 0;
+  
+  function onClickAction(e) {
+    if (e.shiftKey && this.checked) {
+      listItems.forEach(elm => {
+        if(elm == lastchecked || elm == this) {
+          inbetween = !inbetween
+        }
+        if (inbetween){
+          console.log('ran')
+          count++;
+          elm.checked = inbetween;
+        }
+        
+      })
+      
+    }
+    lastchecked = this;
+  }
+  
+  let listItems = document.querySelectorAll('input');
+
+  listItems.forEach(itm => itm.addEventListener('click', onClickAction))
 </script>
 </body>
 </html>
