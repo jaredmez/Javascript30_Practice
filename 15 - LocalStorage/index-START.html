@@ -26,9 +26,34 @@
   </div>
 
 <script>
+  let storeage = window.localStorage;
+  const items = JSON.parse(storeage.getItem('food_items')) || [];
+
   const addItems = document.querySelector('.add-items');
+  addItems.addEventListener('submit', handleSubmit)
   const itemsList = document.querySelector('.plates');
-  const items = [];
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    let newItem = document.querySelector('[name=item')
+    items.push(newItem.value)
+    console.log(items)
+    addToDisplay(newItem.value);
+    storeage.setItem('food_items', JSON.stringify(items))
+    console.log(storeage)
+  }
+
+  function addToDisplay() {
+      itemsList.innerHTML = items.map(itm => {
+       return `<p> ${itm} </p>`
+      }).join('')
+      
+      //let itemElm = document.createElement('li')
+      //itemElm.innerHTML = `
+      //   <p>${dish}</p>`;
+      //itemsList.appendChild(itemElm);
+  }
+  addToDisplay();
 
 </script>
 
