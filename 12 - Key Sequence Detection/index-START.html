@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
-  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js">
+
+  </script>
 </head>
 <body>
 <script>
+  let keyLog = [];
+  let secretcode = 'chicity'
+  function logKey (e) {
+    console.log(e.key);
+    keyLog.push(e.key)
+    keyLog.splice(-secretcode.length -1, keyLog.length - secretcode.length)
+    console.log(keyLog)
+    
+
+    if (keyLog.join('').indexOf(secretcode) != -1) {
+      console.log('code found!!!')
+      cornify_add();
+    }
+  }
+  document.addEventListener('keyup', logKey)
 </script>
 </body>
 </html>
