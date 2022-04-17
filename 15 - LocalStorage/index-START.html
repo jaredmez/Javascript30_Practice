@@ -35,8 +35,8 @@
 
   function handleSubmit(e) {
     e.preventDefault();
-    let newItem = document.querySelector('[name=item')
-    items.push(newItem.value)
+    let newItem = document.querySelector('[name=item]')
+    items.push({ text: newItem.value, done: false})
     console.log(items)
     addToDisplay(newItem.value);
     storeage.setItem('food_items', JSON.stringify(items))
@@ -44,14 +44,14 @@
   }
 
   function addToDisplay() {
-      itemsList.innerHTML = items.map(itm => {
-       return `<p> ${itm} </p>`
+      itemsList.innerHTML = items.map((itm, i) => {
+       return `
+        <li>
+          <input type="checkbox" id=item${i} ${itm.done ? "checked" : ""} />
+          <label for=item${i}>${itm.text}</label>
+        </li>`
       }).join('')
       
-      //let itemElm = document.createElement('li')
-      //itemElm.innerHTML = `
-      //   <p>${dish}</p>`;
-      //itemsList.appendChild(itemElm);
   }
   addToDisplay();
 
