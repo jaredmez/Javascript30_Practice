@@ -48,6 +48,16 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+let ulElm = document.querySelector('#bands');
+function articleRemover(words) {
+  return words.replace(/^(a |the |an )/i, '').trim();
+}
+
+bands.sort((a,b) => articleRemover(a) > articleRemover(b) ? 1 : -1);
+bands.forEach(bandname => {
+  ulElm.innerHTML += `<li>${bandname}</li>`;
+});
+console.log(ulElm);
 
 </script>
 
