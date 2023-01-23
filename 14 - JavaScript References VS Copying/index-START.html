@@ -8,9 +8,23 @@
 
   <script>
     // start with strings, numbers and booleans
+      let age = 100;
+      let age2 = age; 
+      console.log(age, age2);
+      age = 200;
+      console.log(age, age2);
+
+      let answer = true;
+      let answer2 = answer;
+      console.log(answer, answer2);
+      answer = false;
+      console.log(answer, answer2);
 
     // Let's say we have an array
-    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    const players = ['Wes', ['test'], 'Ryan', 'Poppy'];
+    
+    //console.log (players);
+    
 
     // and we want to make a copy of it.
 
@@ -25,7 +39,15 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-
+    //const team = players.slice();
+    const team = [].concat(players);
+    //const team = [...players];
+    console.log(team);
+    team[2]= 'jared';
+    //team[1] = ['hooligan'];
+    players[1].push('heya')
+    console.log(players);
+    console.log(team);
     // one way
 
     // or create a new array and concat the old one in
@@ -37,7 +59,7 @@
     // The same thing goes for objects, let's say we have a person object
 
     // with Objects
-    const person = {
+    let person = {
       name: 'Wes Bos',
       age: 80
     };
@@ -45,8 +67,11 @@
     // and think we make a copy:
 
     // how do we take a copy instead?
+    //const per2 = Object.assign({}, person, {number: 10});
 
     // We will hopefully soon see the object ...spread
+
+    const per2 = [...person];
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
