@@ -182,6 +182,17 @@
     </li>
   </ul>
 <script>
+
+  var timeEls = [...document.querySelectorAll("[data-time]")];
+  var seconds = timeEls.map(dateStat => dateStat.dataset.time)
+    .map(time => {
+      const [min, secs] = time.split(':').map(parseFloat);
+      return min * 60 + secs 
+    })
+    .reduce((runningTotal, secs) => runningTotal + secs)
+
+  console.log(seconds)
+  console.log(timeEls2)
 </script>
 </body>
 </html>
